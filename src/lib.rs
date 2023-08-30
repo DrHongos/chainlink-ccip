@@ -69,6 +69,27 @@ pub fn get_chain(chain_name: &str) -> Result<Chain> {
 pub fn get_lane(source: Chain, destination: Chain) -> Result<Lane> {
     match (source, destination) {
         (Chain::Mainnet, Chain::Optimism) => Ok(MAINNET_OPTIMISM_LANE.clone()),
+        (Chain::Sepolia, Chain::OptimismGoerli) => Ok(SEPOLIA_OPTIMISM_GOERLI_LANE.clone()),
+        (Chain::Sepolia, Chain::ArbitrumGoerli) => Ok(SEPOLIA_ARBITRUM_GOERLI_LANE.clone()),
+        (Chain::Sepolia, Chain::AvalancheFuji) => Ok(SEPOLIA_AVALANCHE_FUJI_LANE.clone()),
+        (Chain::Sepolia, Chain::PolygonMumbai) => Ok(SEPOLIA_POLYGON_MUMBAI_LANE.clone()),
+        (Chain::Sepolia, Chain::BinanceSmartChainTestnet) => Ok(SEPOLIA_BNB_TESNET_LANE.clone()),
+        (Chain::Sepolia, Chain::BaseGoerli) => Ok(SEPOLIA_BASE_GOERLI_LANE.clone()),
+        (Chain::Optimism, Chain::Mainnet) => Ok(OPTIMISM_MAINNET_LANE.clone()),
+        (Chain::OptimismGoerli, Chain::ArbitrumGoerli) => Ok(OPTIMISM_GOERLI_ARBITRUM_GOERLI_LANE.clone()),
+        (Chain::OptimismGoerli, Chain::AvalancheFuji) => Ok(OPTIMISM_GOERLI_AVALANCHE_FUJI_LANE.clone()),
+        (Chain::Avalanche, Chain::Mainnet) => Ok(AVALANCHE_MAINNET_LANE.clone()),
+        (Chain::Avalanche, Chain::Polygon) => Ok(AVALANCHE_POLYGON_LANE.clone()),
+        (Chain::AvalancheFuji, Chain::Sepolia) => Ok(AVALANCHE_FUJI_SEPOLIA_LANE.clone()),
+        (Chain::AvalancheFuji, Chain::OptimismGoerli) => Ok(AVALANCHE_FUJI_OPTIMISM_GOERLI_LANE.clone()),
+        (Chain::AvalancheFuji, Chain::PolygonMumbai) => Ok(AVALANCHE_FUJI_POLYGON_MUMBAI_LANE.clone()),
+        (Chain::ArbitrumGoerli, Chain::Sepolia) => Ok(ARBITRUM_GOERLI_SEPOLIA_LANE.clone()),
+        (Chain::ArbitrumGoerli, Chain::OptimismGoerli) => Ok(ARBITRUM_GOERLI_OPTIMISM_GOERLI_LANE.clone()),
+        (Chain::Polygon, Chain::Mainnet) => Ok(POLYGON_MAINNET_LANE.clone()),
+        (Chain::Polygon, Chain::Avalanche) => Ok(POLYGON_AVALANCHE_LANE.clone()),
+        (Chain::PolygonMumbai, Chain::AvalancheFuji) => Ok(POLYGON_MUMBAI_AVALANCHE_FUJI_LANE.clone()),
+        (Chain::BinanceSmartChainTestnet, Chain::Sepolia) => Ok(BNB_TESTNET_SEPOLIA_LANE.clone()),
+        (Chain::BaseGoerli, Chain::Sepolia) => Ok(BASE_GOERLI_SEPOLIA_LANE.clone()),
         (_, _) => Err(eyre::eyre!("Lane not supported yet"))
     }
 }

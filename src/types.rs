@@ -20,5 +20,5 @@ pub struct TokenCcip {
 pub struct Lane {
     pub source: Chain,
     pub destination: Chain,
-    pub supported_tokens: Vec<TokenCcip>,
+    pub supported_tokens: Option<Vec<TokenCcip>>,
 }
