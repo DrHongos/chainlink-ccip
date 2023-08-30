@@ -11,7 +11,7 @@ pub enum FeeToken {
 pub struct TokenCcip {
     pub name: &'static str,
     pub address: &'static str,
-    pub decimals: u8,
+    pub decimals: usize,
     pub capacity_usd: u64,
     pub refill_per_second: u64,
 }
