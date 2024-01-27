@@ -1,7 +1,8 @@
 // taken from https://docs.chain.link/ccip/supported-networks
-use ethers::prelude::*;
 use crate::types::*;
 use std::collections::HashMap;
+use alloy_chains::NamedChain;
+use alloy_primitives::Address;
 
 pub const MAX_DATA_LENGTH: u64 = 50000; // bytes
 pub const MESSAGE_GAS_LIMIT: u64 = 2_000_000;
@@ -44,7 +45,7 @@ pub const BASE_GOERLI_SELECTOR: i128 = 5790810961207155433;
 lazy_static! {
     pub static ref MAINNET_FEE_TOKENS: HashMap<FeeToken, Address> = {
         let mut h = HashMap::new();
-        h.insert(FeeToken::Native, Address::zero());
+        h.insert(FeeToken::Native, Address::ZERO);
         h.insert(FeeToken::WrappedNative, "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2".parse().unwrap());
         h.insert(FeeToken::Link, "0x514910771AF9Ca656af840dff83E8264EcF986CA".parse().unwrap());
         h
@@ -52,7 +53,7 @@ lazy_static! {
 
     pub static ref SEPOLIA_FEE_TOKENS: HashMap<FeeToken, Address> = {
         let mut h = HashMap::new();
-        h.insert(FeeToken::Native, Address::zero());
+        h.insert(FeeToken::Native, Address::ZERO);
         h.insert(FeeToken::WrappedNative, "0x097D90c9d3E0B50Ca60e1ae45F6A81010f9FB534".parse().unwrap());
         h.insert(FeeToken::Link, "0x779877A7B0D9E8603169DdbD7836e478b4624789".parse().unwrap());
         h
@@ -60,7 +61,7 @@ lazy_static! {
 
     pub static ref OPTIMISM_FEE_TOKENS: HashMap<FeeToken, Address> = {
         let mut h = HashMap::new();
-        h.insert(FeeToken::Native, Address::zero());
+        h.insert(FeeToken::Native, Address::ZERO);
         h.insert(FeeToken::WrappedNative, "0x4200000000000000000000000000000000000006".parse().unwrap());
         h.insert(FeeToken::Link, "0x350a791Bfc2C21F9Ed5d10980Dad2e2638ffa7f6".parse().unwrap());
         h
@@ -68,7 +69,7 @@ lazy_static! {
 
     pub static ref OPTIMISM_GOERLI_FEE_TOKENS: HashMap<FeeToken, Address> = {
         let mut h = HashMap::new();
-        h.insert(FeeToken::Native, Address::zero());
+        h.insert(FeeToken::Native, Address::ZERO);
         h.insert(FeeToken::WrappedNative, "0x4200000000000000000000000000000000000006".parse().unwrap());
         h.insert(FeeToken::Link, "0xdc2CC710e42857672E7907CF474a69B63B93089f".parse().unwrap());
         h
@@ -76,7 +77,7 @@ lazy_static! {
 
     pub static ref AVALANCHE_FEE_TOKENS: HashMap<FeeToken, Address> = {
         let mut h = HashMap::new();
-        h.insert(FeeToken::Native, Address::zero());
+        h.insert(FeeToken::Native, Address::ZERO);
         h.insert(FeeToken::WrappedNative, "0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7".parse().unwrap());
         h.insert(FeeToken::Link, "0x5947BB275c521040051D82396192181b413227A3".parse().unwrap());
         h
@@ -84,7 +85,7 @@ lazy_static! {
 
     pub static ref AVALANCHE_FUJI_FEE_TOKENS: HashMap<FeeToken, Address> = {
         let mut h = HashMap::new();
-        h.insert(FeeToken::Native, Address::zero());
+        h.insert(FeeToken::Native, Address::ZERO);
         h.insert(FeeToken::WrappedNative, "0xd00ae08403B9bbb9124bB305C09058E32C39A48c".parse().unwrap());
         h.insert(FeeToken::Link, "0x0b9d5D9136855f6FEc3c0993feE6E9CE8a297846".parse().unwrap());
         h
@@ -92,7 +93,7 @@ lazy_static! {
 
     pub static ref POLYGON_FEE_TOKENS: HashMap<FeeToken, Address> = {
         let mut h = HashMap::new();
-        h.insert(FeeToken::Native, Address::zero());
+        h.insert(FeeToken::Native, Address::ZERO);
         h.insert(FeeToken::WrappedNative, "0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270".parse().unwrap());
         h.insert(FeeToken::Link, "0xb0897686c545045aFc77CF20eC7A532E3120E0F1".parse().unwrap());
         h
@@ -100,7 +101,7 @@ lazy_static! {
 
     pub static ref POLYGON_MUMBAI_FEE_TOKENS: HashMap<FeeToken, Address> = {
         let mut h = HashMap::new();
-        h.insert(FeeToken::Native, Address::zero());
+        h.insert(FeeToken::Native, Address::ZERO);
         h.insert(FeeToken::WrappedNative, "0x9c3C9283D3e44854697Cd22D3Faa240Cfb032889".parse().unwrap());
         h.insert(FeeToken::Link, "0x326C977E6efc84E512bB9C30f76E30c160eD06FB".parse().unwrap());
         h
@@ -108,7 +109,7 @@ lazy_static! {
 
     pub static ref BNB_TESNET_FEE_TOKENS: HashMap<FeeToken, Address> = {
         let mut h = HashMap::new();
-        h.insert(FeeToken::Native, Address::zero());
+        h.insert(FeeToken::Native, Address::ZERO);
         h.insert(FeeToken::WrappedNative, "0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd".parse().unwrap());
         h.insert(FeeToken::Link, "0x84b9B910527Ad5C03A9Ca831909E21e236EA7b06".parse().unwrap());
         h
@@ -116,7 +117,7 @@ lazy_static! {
 
     pub static ref BASE_GOERLI_FEE_TOKENS: HashMap<FeeToken, Address> = {
         let mut h = HashMap::new();
-        h.insert(FeeToken::Native, Address::zero());
+        h.insert(FeeToken::Native, Address::ZERO);
         h.insert(FeeToken::WrappedNative, "0x4200000000000000000000000000000000000006".parse().unwrap());
         h.insert(FeeToken::Link, "0xd886e2286fd1073df82462ea1822119600af80b6".parse().unwrap());
         h
@@ -124,7 +125,7 @@ lazy_static! {
 
     pub static ref ARBITRUM_GOERLI_FEE_TOKENS: HashMap<FeeToken, Address> = {
         let mut h = HashMap::new();
-        h.insert(FeeToken::Native, Address::zero());
+        h.insert(FeeToken::Native, Address::ZERO);
         h.insert(FeeToken::WrappedNative, "0x32d5D5978905d9c6c2D4C417F0E06Fe768a4FB5a".parse().unwrap());
         h.insert(FeeToken::Link, "0xd14838A68E8AFBAdE5efb411d5871ea0011AFd28".parse().unwrap());
         h
@@ -315,144 +316,144 @@ lazy_static!{
 
     pub static ref MAINNET_OPTIMISM_LANE: Lane = {
         Lane {
-            source: Chain::Mainnet,
-            destination: Chain::Optimism,
+            source: NamedChain::Mainnet,
+            destination: NamedChain::Optimism,
             supported_tokens: Some(vec![SNXUSD_MAINNET_OPTIMISM]),
         } 
     };
 
     pub static ref SEPOLIA_OPTIMISM_GOERLI_LANE: Lane = {
         Lane {
-            source: Chain::Sepolia,
-            destination: Chain::OptimismGoerli,
+            source: NamedChain::Sepolia,
+            destination: NamedChain::OptimismGoerli,
             supported_tokens: Some(SEPOLIA_TOKENS.clone())
         }
     };
 
     pub static ref SEPOLIA_ARBITRUM_GOERLI_LANE: Lane = {
         Lane {
-            source: Chain::Sepolia,
-            destination: Chain::ArbitrumGoerli,
+            source: NamedChain::Sepolia,
+            destination: NamedChain::ArbitrumGoerli,
             supported_tokens: Some(SEPOLIA_TOKENS.clone())
         }
     };
 
     pub static ref SEPOLIA_AVALANCHE_FUJI_LANE: Lane = {
         Lane {
-            source: Chain::Sepolia,
-            destination: Chain::AvalancheFuji,
+            source: NamedChain::Sepolia,
+            destination: NamedChain::AvalancheFuji,
             supported_tokens: Some(SEPOLIA_TOKENS.clone())
         }
     };
 
     pub static ref SEPOLIA_POLYGON_MUMBAI_LANE: Lane = {
         Lane {
-            source: Chain::Sepolia,
-            destination: Chain::PolygonMumbai,
+            source: NamedChain::Sepolia,
+            destination: NamedChain::PolygonMumbai,
             supported_tokens: Some(SEPOLIA_TOKENS.clone())
         }
     };
 
     pub static ref SEPOLIA_BNB_TESNET_LANE: Lane = {
         Lane {
-            source: Chain::Sepolia,
-            destination: Chain::BinanceSmartChainTestnet,
+            source: NamedChain::Sepolia,
+            destination: NamedChain::BinanceSmartChainTestnet,
             supported_tokens: Some(vec![LINK_SEPOLIA])
         }
     };
 
     pub static ref SEPOLIA_BASE_GOERLI_LANE: Lane = {
         Lane {
-            source: Chain::Sepolia,
-            destination: Chain::BinanceSmartChainTestnet,
+            source: NamedChain::Sepolia,
+            destination: NamedChain::BinanceSmartChainTestnet,
             supported_tokens: Some(vec![LINK_SEPOLIA])
         }
     };
 
     pub static ref OPTIMISM_MAINNET_LANE: Lane = {
         Lane {
-            source: Chain::Optimism,
-            destination: Chain::Mainnet,
+            source: NamedChain::Optimism,
+            destination: NamedChain::Mainnet,
             supported_tokens: Some(vec![SNXUSD_MAINNET_OPTIMISM]),
         } 
     };
 
     pub static ref OPTIMISM_GOERLI_ARBITRUM_GOERLI_LANE: Lane = {
         Lane {
-            source: Chain::OptimismGoerli,
-            destination: Chain::ArbitrumGoerli,
+            source: NamedChain::OptimismGoerli,
+            destination: NamedChain::ArbitrumGoerli,
             supported_tokens: Some(OPTIMISM_GOERLI_TOKENS.clone()),
         } 
     };
 
     pub static ref OPTIMISM_GOERLI_AVALANCHE_FUJI_LANE: Lane = {
         Lane {
-            source: Chain::OptimismGoerli,
-            destination: Chain::AvalancheFuji,
+            source: NamedChain::OptimismGoerli,
+            destination: NamedChain::AvalancheFuji,
             supported_tokens: Some(OPTIMISM_GOERLI_TOKENS.clone()),
         } 
     };
 
     pub static ref AVALANCHE_FUJI_SEPOLIA_LANE: Lane = {
         Lane {
-            source: Chain::AvalancheFuji,
-            destination: Chain::Sepolia,
+            source: NamedChain::AvalancheFuji,
+            destination: NamedChain::Sepolia,
             supported_tokens: Some(AVALANCHE_FUJI_TOKENS.clone()),
         } 
     };
 
     pub static ref AVALANCHE_FUJI_OPTIMISM_GOERLI_LANE: Lane = {
         Lane {
-            source: Chain::AvalancheFuji,
-            destination: Chain::OptimismGoerli,
+            source: NamedChain::AvalancheFuji,
+            destination: NamedChain::OptimismGoerli,
             supported_tokens: Some(AVALANCHE_FUJI_TOKENS.clone()),
         } 
     };
 
     pub static ref AVALANCHE_FUJI_POLYGON_MUMBAI_LANE: Lane = {
         Lane {
-            source: Chain::AvalancheFuji,
-            destination: Chain::PolygonMumbai,
+            source: NamedChain::AvalancheFuji,
+            destination: NamedChain::PolygonMumbai,
             supported_tokens: Some(AVALANCHE_FUJI_TOKENS.clone()),
         } 
     };
 
     pub static ref ARBITRUM_GOERLI_SEPOLIA_LANE: Lane = {
         Lane {
-            source: Chain::ArbitrumGoerli,
-            destination: Chain::Sepolia,
+            source: NamedChain::ArbitrumGoerli,
+            destination: NamedChain::Sepolia,
             supported_tokens: Some(ARBITRUM_GOERLI_TOKENS.clone()),
         } 
     };
 
     pub static ref ARBITRUM_GOERLI_OPTIMISM_GOERLI_LANE: Lane = {
         Lane {
-            source: Chain::ArbitrumGoerli,
-            destination: Chain::OptimismGoerli,
+            source: NamedChain::ArbitrumGoerli,
+            destination: NamedChain::OptimismGoerli,
             supported_tokens: Some(ARBITRUM_GOERLI_TOKENS.clone()),
         } 
     };
 
     pub static ref POLYGON_MUMBAI_AVALANCHE_FUJI_LANE: Lane = {
         Lane {
-            source: Chain::PolygonMumbai,
-            destination: Chain::AvalancheFuji,
+            source: NamedChain::PolygonMumbai,
+            destination: NamedChain::AvalancheFuji,
             supported_tokens: Some(POLYGON_MUMBAI_TOKENS.clone()),
         } 
     };
 
     pub static ref BNB_TESTNET_SEPOLIA_LANE: Lane = {
         Lane {
-            source: Chain::BinanceSmartChainTestnet,
-            destination: Chain::Sepolia,
+            source: NamedChain::BinanceSmartChainTestnet,
+            destination: NamedChain::Sepolia,
             supported_tokens: Some(vec![LINK_BNB_TESTNET]),
         } 
     };
 
     pub static ref BASE_GOERLI_SEPOLIA_LANE: Lane = {
         Lane {
-            source: Chain::BaseGoerli,
-            destination: Chain::Sepolia,
+            source: NamedChain::BaseGoerli,
+            destination: NamedChain::Sepolia,
             supported_tokens: Some(vec![LINK_BASE_GOERLI]),
         } 
     };
@@ -460,37 +461,37 @@ lazy_static!{
 }
 
 pub const MAINNET_POLYGON_LANE: Lane = Lane {
-    source: Chain::Mainnet,
-    destination: Chain::Polygon,
+    source: NamedChain::Mainnet,
+    destination: NamedChain::Polygon,
     supported_tokens: None, 
 };
 
 pub const MAINNET_AVALANCHE_LANE: Lane = Lane {
-    source: Chain::Mainnet,
-    destination: Chain::Avalanche,
+    source: NamedChain::Mainnet,
+    destination: NamedChain::Avalanche,
     supported_tokens: None, 
 };
 
 pub const AVALANCHE_MAINNET_LANE: Lane = Lane {
-    source: Chain::Avalanche,
-    destination: Chain::Mainnet,
+    source: NamedChain::Avalanche,
+    destination: NamedChain::Mainnet,
     supported_tokens: None, 
 };
 
 pub const AVALANCHE_POLYGON_LANE: Lane = Lane {
-    source: Chain::Mainnet,
-    destination: Chain::Polygon,
+    source: NamedChain::Mainnet,
+    destination: NamedChain::Polygon,
     supported_tokens: None, 
 };
 
 pub const POLYGON_MAINNET_LANE: Lane = Lane {
-    source: Chain::Polygon,
-    destination: Chain::Mainnet,
+    source: NamedChain::Polygon,
+    destination: NamedChain::Mainnet,
     supported_tokens: None, 
 };
 
 pub const POLYGON_AVALANCHE_LANE: Lane = Lane {
-    source: Chain::Polygon,
-    destination: Chain::Avalanche,
+    source: NamedChain::Polygon,
+    destination: NamedChain::Avalanche,
     supported_tokens: None, 
 };
