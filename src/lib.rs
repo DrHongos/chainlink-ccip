@@ -3,8 +3,12 @@ extern crate lazy_static;
 
 pub mod constants;
 pub mod types;
+pub mod tokens;
+pub mod fee_tokens;
 
 use constants::*;
+use tokens::*;
+use fee_tokens::*;
 use eyre::Result;
 use types::{TokenCcip, FeeToken};
 use crate::types::Lane;
@@ -12,24 +16,6 @@ use alloy_primitives::Address;
 use alloy_chains::NamedChain;
 
 // GETTERS FOR CONSTANTS
-pub fn get_provider_rpc_url(chain: NamedChain) -> Result<String> {
-    match chain {
-        NamedChain::Mainnet => Ok(String::from("https://mainnet.infura.io/v3/88371c5dbe284f97bb2789cf7f9ca6f1")),
-        NamedChain::Sepolia => Ok(String::from("https://sepolia.infura.io/v3/88371c5dbe284f97bb2789cf7f9ca6f1")),
-        NamedChain::Polygon => Ok(String::from("https://polygon-mainnet.infura.io/v3/88371c5dbe284f97bb2789cf7f9ca6f1")),
-        NamedChain::PolygonMumbai => Ok(String::from("https://polygon-mumbai.infura.io/v3/88371c5dbe284f97bb2789cf7f9ca6f1")),
-        NamedChain::Optimism => Ok(String::from("https://optimism-mainnet.infura.io/v3/88371c5dbe284f97bb2789cf7f9ca6f1")),
-        NamedChain::OptimismGoerli => Ok(String::from("https://optimism-goerli.infura.io/v3/88371c5dbe284f97bb2789cf7f9ca6f1")),
-        NamedChain::Arbitrum => Ok(String::from("https://arbitrum-mainnet.infura.io/v3/88371c5dbe284f97bb2789cf7f9ca6f1")),
-        NamedChain::ArbitrumGoerli => Ok(String::from("https://arbitrum-goerli.infura.io/v3/88371c5dbe284f97bb2789cf7f9ca6f1")),
-        NamedChain::Avalanche => Ok(String::from("https://avalanche-mainnet.infura.io/v3/88371c5dbe284f97bb2789cf7f9ca6f1")),
-        NamedChain::AvalancheFuji => Ok(String::from("https://avalanche-fuji.infura.io/v3/88371c5dbe284f97bb2789cf7f9ca6f1")),
-        NamedChain::BinanceSmartChainTestnet => Ok(String::from("https://data-seed-prebsc-1-s1.binance.org:8545/")),
-        NamedChain::BaseGoerli => Ok(String::from("https://base-goerli.blockpi.network/v1/rpc/public	")),
-        _ => Err(eyre::eyre!("Chain has no RPC URL")) 
-    }
-}
-
 pub fn get_tokens_tests(chain: &NamedChain) -> Result<Vec<TokenCcip>> {
     match chain {
         NamedChain::Mainnet => Ok(vec![SNXUSD_MAINNET_OPTIMISM]),
