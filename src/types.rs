@@ -13,14 +13,20 @@ pub struct TokenCcip {
     pub name: &'static str,
     pub address: &'static str,
     pub decimals: usize,
-    pub capacity_usd: u64,
-    pub refill_per_second: f64,
+    /// Maximum amount per transaction (Token)
+    pub rate_limit_capacity: u64,
+    /// Rate at which available capacity is replenished
+    pub rate_limit_refill_rate: f64,
 }
 
 #[derive(Debug, Clone)]
 pub struct Lane {
     pub source: NamedChain,
     pub destination: NamedChain,
+    /// maximum amount per transaction (USD)
+    pub capacity: u64,
+    /// Rate at which the capacity is replenished
+    pub refill_rate: f64,
     pub supported_tokens: Option<Vec<TokenCcip>>,
 }
 

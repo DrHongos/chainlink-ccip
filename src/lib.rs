@@ -5,8 +5,10 @@ pub mod constants;
 pub mod types;
 pub mod tokens;
 pub mod fee_tokens;
+pub mod lanes;
 
 use constants::*;
+use lanes::*;
 use fee_tokens::*;
 use eyre::Result;
 use types::FeeToken;
