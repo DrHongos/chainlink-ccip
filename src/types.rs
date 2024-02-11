@@ -14,7 +14,7 @@ pub struct TokenCcip {
     pub address: &'static str,
     pub decimals: usize,
     pub capacity_usd: u64,
-    pub refill_per_second: u64,
+    pub refill_per_second: f64,
 }
 
 #[derive(Debug, Clone)]
