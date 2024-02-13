@@ -6,6 +6,7 @@ pub mod types;
 pub mod tokens;
 pub mod fee_tokens;
 pub mod lanes;
+pub mod contracts;
 
 use constants::*;
 use lanes::*;
@@ -68,27 +69,6 @@ pub fn get_selector(chain: &NamedChain) -> Result<i128> {
     }    
 }
 
-// shouldn't be needed anymore (alloy-chains)
-pub fn get_chain(chain_name: &str) -> Result<NamedChain> {
-    match chain_name.to_ascii_lowercase().as_ref() {
-        "mainnet" => Ok(NamedChain::Mainnet),
-        "optimism" => Ok(NamedChain::Optimism),
-        "optimism-goerli" => Ok(NamedChain::OptimismGoerli),
-        "sepolia" => Ok(NamedChain::Sepolia),
-        "avalanche" => Ok(NamedChain::Avalanche),
-        "avalanche-fuji" => Ok(NamedChain::AvalancheFuji),
-        "arbitrum-sepolia" => Ok(NamedChain::ArbitrumSepolia),
-        "polygon" => Ok(NamedChain::Polygon),
-        "polygon-mumbai" => Ok(NamedChain::PolygonMumbai),
-        "bnb-testnet" => Ok(NamedChain::BinanceSmartChainTestnet),
-        "base-goerli" => Ok(NamedChain::BaseGoerli),
-        _ => {
-            Err(eyre::eyre!("Chain unknown {chain_name}"))
-        }
-    }
-}
-
-// add all lanes!
 pub fn get_lane(source: NamedChain, destination: NamedChain) -> Result<Lane> {
     match (source, destination) {
         (NamedChain::Mainnet, NamedChain::Optimism) => Ok(MAINNET_OPTIMISM_LANE.clone()),

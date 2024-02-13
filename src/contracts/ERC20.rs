@@ -1,3 +1,7 @@
+use alloy_sol_types::sol;
+sol!(
+    ERC20,
+    r#"
 [
     {
         "constant": true,
@@ -220,3 +224,5 @@
         "type": "event"
     }
 ]
+    "#
+);
